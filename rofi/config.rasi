@@ -1,0 +1,37 @@
+@import "~/.cache/wal/colors-rofi-dark.rasi"
+
+configuration {
+    display-drun: "";
+    drun-display-format: "{name}";
+    font: "JetBrainsMono Nerd Font Medium 18";
+}
+
+window {
+    width: 50%;
+    height: 45%;
+    border-radius: 10px;
+}
+
+inputbar {
+    children: [ entry ];
+    padding: 0px 0px 15px 0px;
+}
+
+entry {
+    placeholder: "Search";
+    padding: 5px 5px 5px 5px;
+    border-radius: 10px;
+}
+
+element {
+    padding: 3px;
+}
+
+element selected {
+    border-radius: 10px;
+}
+
+scrollbar {
+    width: 0px;
+    handle-width: 0px;
+}
