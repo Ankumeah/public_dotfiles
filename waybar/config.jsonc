@@ -1,0 +1,103 @@
+{
+  "layer": "top",
+  "style": "~/.config/waybar/style.css",
+  "margin-left": 2,
+  "margin-right": 2,
+  "margin-top": 2,
+  "margin-bottom": 0,
+  "modules-left": ["cpu", "memory", "network#speed"],
+  "modules-center": ["hyprland/workspaces", "clock"],
+  "modules-right": [
+    "custom/cava",
+    "temperature#gpu",
+    "network",
+    "bluetooth",
+    "pulseaudio",
+    "battery"
+  ],
+  "custom/cava": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/cava.sh",
+    "tooltip": false
+
+  },
+  "temperature#gpu": {
+    "thermal-zone": 5,
+    "critical-threshold": 80,
+    "format-critical": "{temperatureC}°C ",
+    "format": "{temperatureC}°C ",
+    "tooltip": false
+  },
+  "network#speed": {
+    "interval": 1,
+    "format": "{ifname}%%",
+    "format-wifi": " {bandwidthDownBytes}  {bandwidthUpBytes}",
+    "format-ethernet": " {bandwidthDownBytes}  {bandwidthUpBytes} ",
+    "format-disconnected": "󰌙",
+    "tooltip-format": "{ipaddr}",
+    "format-linked": "󰈁 {ifname} (No IP)",
+    "tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
+    "tooltip-format-ethernet": "{ifname} 󰌘",
+    "tooltip-format-disconnected": "󰌙 Disconnected",
+    "max-length": 22,
+    "min-length": 20,
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "tooltip": false
+  },
+  "cpu": {
+    "interval": 1,
+    "format": "{usage}% <span font='Font Awesome 6 Free-Solid'>\uf2db</span>",
+    "tooltip": false
+  },
+  "memory": {
+    "interval": 1,
+    "format": "{percentage}% <span font='Font Awesome 5 Free'>\uf538</span>",
+    "tooltip": false
+  },
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "active-only": true,
+    "format": " {name} ",
+    "tooltip": false
+  },
+  "clock": {
+    "format": "{:%I:%M %p • %a %d/%m}",
+    "tooltip": false
+  },
+  "network": {
+    "format-wifi": " {icon} {essid}",
+    "format-ethernet": "󰈀",
+    "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤢 ", "󰤨 "],
+    "format-disconnected": "󰪎",
+    "interval": 2,
+    "tooltip": false
+  },
+  "battery": {
+    "states": {
+      "good": 60,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": " {capacity}% {icon} ",
+    "format-full": "{icon}",
+    "format-plugged": " {capacity}% <span font='Font Awesome 5 Free'>\uf0e7</span> ",
+    "format-alt": "{icon}",
+    "format-icons": [" ", " ", " ", " "],
+    "tooltip": false,
+  },
+  "pulseaudio": {
+    "format-muted": "\uf6a9",
+    "format-icons": {
+      "headphone": "\uf025",
+      "default": ["\ue638"]
+    },
+    "tooltip": false
+  },
+  "bluetooth": {
+    "format": "{icon} {device_alias} {device_battery_percentage}",
+    "format-icons": ["", "󰤾", "󰥀", "󰥄", "󰥈"],
+    "format-connected": "{icon} {num_connections}",
+    "format-connected-battery": "{icon} {device_battery_percentage}%",
+    "tooltip": false
+  }
+}
