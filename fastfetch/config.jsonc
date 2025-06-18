@@ -1,8 +1,13 @@
 {
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
     "logo": {
-        "source": "/home/anku/.config/fastfetch/pngs/luffy.png",
-        "width": 40
+        //"source": "/home/anku/.config/fastfetch/pngs/luffy.png",
+        //"width": 40
+        "padding": {
+            "top": 3,
+            "left": 2,
+        },
+        "type": "small"
     },
     "display": {
         "separator": " : ",
@@ -14,54 +19,36 @@
         "break",
         {
             "type": "custom",
-            "format": "┌───────────── One Piece is Life ────────────┐",
+            "format": "┌──────────── One Piece is Life ───────────┐",
             "outputColor": "blue"
         },
         {
             "type": "os",
-            "key": "   OS      ",
+            "key": "   OS    ",
             "keyColor": "blue",
             "outputColor": "blue"
         },
         {
             "type": "kernel",
-            "key": "   Kernel  ",
-            "keyColor": "blue",
-            "outputColor": "blue"
-        },
-        {
-            "type": "packages",
-            "key": "   Packages",
+            "key": "   Kernel",
             "keyColor": "blue",
             "outputColor": "blue"
         },
         {
             "type": "wm",
-            "key": "   WM      ",
-            "keyColor": "blue",
-            "outputColor": "blue"
-        },
-        {
-            "type": "terminal",
-            "key": "   Terminal",
-            "keyColor": "blue",
-            "outputColor": "blue"
-        },
-        {
-            "type": "shell",
-            "key": "   Shell   ",
+            "key": "   WM    ",
             "keyColor": "blue",
             "outputColor": "blue"
         },
         {
             "type": "custom",
-            "format": "├────────────────────────────────────────────┤",
+            "format": "├──────────────────────────────────────────┤",
             "outputColor": "blue"
         },
         {
             "type": "cpu",
             "format": "{1}",
-            "key": "   CPU     ",
+            "key": "   CPU   ",
             "keyColor": "blue",
             "outputColor": "blue",
             //"format": "{1} ({8})",
@@ -69,34 +56,27 @@
             "temp": true
         },
         {
-            "type": "gpu",
-            "format": "{2} ({6})",
-            "key": "   GPU     ",
-            "keyColor": "blue",
-            "outputColor": "blue"
-        },
-        {
             "type": "memory",
-            "key": "   Memory  ",
+            "key": "   Memory",
             "keyColor": "blue",
             "outputColor": "blue"
         },
         {
             "type": "swap",
-            "key": "  󰓡 Swap    ",
+            "key": "  󰓡 Swap  ",
             "keyColor": "blue",
             "outputColor": "blue"
         },
         {
             "type": "disk",
-            "key": "   Disk    ",
+            "key": "   Disk  ",
             "keyColor": "blue",
             "outputColor": "blue",
             "format": "{1} / {2} ({3})"
         },
         {
             "type": "custom",
-            "format": "└────────────────────────────────────────────┘",
+            "format": "└──────────────────────────────────────────┘",
             "outputColor": "blue"
         }
     ]

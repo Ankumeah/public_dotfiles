@@ -1,0 +1,150 @@
+(defpoll bar_time
+  :interval "1s"
+  "date '+%I:%M %p'"
+)
+
+(defpoll bar_date
+  :interval "1s"
+  "date '+%d %b, %Y'"
+)
+
+(defpoll bar_workspace
+  :interval "0.1s"
+  "hyprctl monitors -j | jq '.[] | select(.focused).activeWorkspace.id'"
+)
+
+(defpoll bar_audio_level
+  :interval "0.1s"
+  "pamixer --get-volume"
+)
+
+(defpoll bar_muted
+  :interval "0.1s"
+  "pamixer --get-mute | grep -q true && echo 󰝟 || echo "
+)
+
+(defpoll bar_wifi_name
+  :interval "0.5s"
+  "iwgetid -r || echo 'None'"
+)
+
+(defpoll bar_bluetooth_name
+  :interval "1s"
+  "bluetoothctl info | awk -F': ' '/Name:/ {name=$2} /Connected: yes/ {found=1} END {if (found) print name; else print 'None'}'"
+)
+
+(defpoll bar_bluetooth_battery
+  :interval "10"
+  "bluetoothctl info | awk -F': ' '/Connected: yes/ {c=1} c && /Battery Percentage:/ {gsub(/^0x/, \"\", $2); print strtonum(\"0x\" $2); exit}'"
+)
+
+(defwindow bar
+  :class "bar"
+  :monitor 0
+  :geometry (geometry
+    :width "100%"
+    :height "36px"
+    :anchor "top center")
+  :exclusive "true"
+
+  (box
+    (bar_left_side)
+    (bar_middle)
+    (bar_right_side)
+  )
+)
+
+(defwidget bar_left_side []
+  (box
+    :class "bar_side_holder"
+    :orientation "horizontal"
+    :spacing 3
+    :halign "start"
+    :vexpand true
+    :space-evenly false
+
+    (bar_widget
+      :text "${round (EWW_CPU.avg, 0)}% "
+    )
+    (bar_widget
+      :text "${round (EWW_RAM.used_mem_perc, 0)}% "
+    )
+;    (bar_widget
+;      :text "${EWW_NET.lo.NET_DOWN}kb/s  - ${EWW_NET.lo.NET_UP}kb/s "        ;;TODO { DOSENT WORK }
+;    )
+  )
+)
+
+(defwidget bar_middle []
+  (box
+    :class "bar_side_holder"
+    :orientation "horizontal"
+    :spacing 3
+    :halign "center"
+    :vexpand true
+    :space-evenly false
+
+    (bar_widget
+      :text bar_workspace
+    )
+    (bar_widget
+      :text "${bar_time} - ${bar_date}"
+    )
+    (bar_widget
+      :text "${EWW_TEMPS.CORETEMP_PACKAGE_ID_0}°C "
+    )
+  )
+)
+
+(defwidget bar_right_side []
+  (box
+    :class "bar_side_holder"
+    :orientation "horizontal"
+    :spacing 3
+    :halign "end"
+    :vexpand true
+    :space-evenly false
+
+    (bar_widget
+      :text "${bar_bluetooth_name ?: "None"} | ${bar_bluetooth_battery ?: "0"}% "
+    )
+    (bar_widget
+      :text "${bar_audio_level}% ${bar_muted}"
+    )
+    (bar_widget
+      :text "${bar_wifi_name} 󰤢"
+    )
+    (bar_battery_widget
+      :text "${EWW_BATTERY.BAT0.capacity}% "
+    )
+  )
+)
+
+(defwidget bar_widget [text]
+  (box
+    :class "bar_children_box"
+    :vexpand true
+
+    (label
+      :text text
+    )
+  )
+)
+
+(defwidget bar_battery_widget [text]
+  (box
+    :class "bar_battery_widget"
+    :vexpand true
+    :css {
+      EWW_BATTERY.BAT0.capacity <= 40 ?
+      ".bar_battery_widget {
+        background: #d20f39;
+      }" : ""
+    }
+
+
+    (label
+      :text text
+    )
+  )
+)

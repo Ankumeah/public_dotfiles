@@ -5,14 +5,20 @@
   "margin-right": 2,
   "margin-top": 2,
   "margin-bottom": 0,
-  "modules-left": ["cpu", "memory", "network#speed"],
-  "modules-center": ["hyprland/workspaces", "clock"],
+  "modules-left": [
+        "cpu",
+        "memory",
+        "network#speed"
+    ],
+  "modules-center": [
+        "hyprland/workspaces",
+        "clock",
+        "temperature#gpu",
+    ],
   "modules-right": [
-    "custom/cava",
-    "temperature#gpu",
-    "network",
     "bluetooth",
     "pulseaudio",
+    "network",
     "battery"
   ],
   "custom/cava": {

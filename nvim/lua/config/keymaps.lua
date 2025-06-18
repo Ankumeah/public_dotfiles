@@ -9,3 +9,7 @@ vim.keymap.set("n", "l", "l", { desc = "Move right" })
 vim.keymap.set("n", "<leader>t", function()
     vim.cmd("vs | terminal")
 end, { desc = "Vertical split open a terminal" })
+
+vim.keymap.set("n", "<A-Tab>", function()
+    vim.cmd("bnext")
+end, { desc = "Cycle through buffers" })

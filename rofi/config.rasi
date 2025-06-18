@@ -2,7 +2,9 @@
 
 configuration {
     display-drun: "";
-    drun-display-format: "{name}";
+    drun-display-format: "{icon} {name}";
+    show-icons: true;
+    icon-theme: "Papirus";
     font: "JetBrainsMono Nerd Font Medium 18";
 }
 
@@ -10,6 +12,8 @@ window {
     width: 50%;
     height: 45%;
     border-radius: 10px;
+    border: 2px;
+    border-color: @foreground;
 }
 
 inputbar {
@@ -18,17 +22,22 @@ inputbar {
 }
 
 entry {
-    placeholder: "Search";
-    padding: 5px 5px 5px 5px;
     border-radius: 10px;
-}
+    border-color: @foreground;
+    border: 2px;
+    padding: 10px 10px 10px 10px;
+    placeholder: "Search";
+    }
 
 element {
-    padding: 3px;
+    padding: 5px;
 }
 
 element selected {
+    padding: 5px;
     border-radius: 10px;
+    border: 1px;
+    border-color: @foreground;
 }
 
 scrollbar {

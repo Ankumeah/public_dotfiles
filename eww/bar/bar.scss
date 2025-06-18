@@ -1,0 +1,27 @@
+@import '../color.scss';
+
+.bar {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2px 15px 2px 15px;
+}
+
+.bar_side_holder {
+  background: rgba(0, 0, 0, 0);
+  padding: 3px 5px;
+}
+
+.bar_children_box {
+  background: $background;
+  color: $foreground;
+  padding: 6px 8px;
+  border-radius: 6px;
+  min-width: 25px;
+}
+
+.bar_battery_widget {
+  background: $background;
+  color: $foreground;
+  padding: 6px 8px;
+  border-radius: 6px;
+  min-width: 25px;
+}
