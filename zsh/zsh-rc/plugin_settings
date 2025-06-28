@@ -1,0 +1,23 @@
+# vim: filetype=sh
+
+autoload -Uz compinit && compinit
+setopt histignoredups
+setopt share_history
+
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+setopt append_history
+setopt share_history
+
+bindkey '\e[1~' beginning-of-line
+bindkey '\e[4~' end-of-line
+bindkey '\e[H' beginning-of-line
+bindkey '\e[F' end-of-line
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+ZSH_AUTOSUGGEST_STRATEGY=(completion)
+
+color4=$(jq -r '.colors.color4' ~/.cache/wal/colors.json)
+ZSH_HIGHLIGHT_STYLES[unknown-token]="fg=$color4"

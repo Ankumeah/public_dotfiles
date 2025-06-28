@@ -1,0 +1,4 @@
+# vim: filetype=sh
+
+fastfetch
+eval "$(starship init zsh)"

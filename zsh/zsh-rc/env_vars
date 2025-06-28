@@ -1,0 +1,6 @@
+# vim: filetype=sh
+
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+export PATH="$HOME/.local/bin:$PATH"
+. "$HOME/.cargo/env"

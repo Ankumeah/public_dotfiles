@@ -1,0 +1,23 @@
+# vim: filetype=sh
+# this is an experimatl file, do not source as it will messup your prompt for the session
+
+color_echo() {
+  local fg="${1#"#"}"
+  local bg="${2#"#"}"
+  local text="$3"
+  printf '\e[38;2;%d;%d;%dm\e[48;2;%d;%d;%dm%s\e[0m\n' \
+    "0x${fg:0:2}" "0x${fg:2:2}" "0x${fg:4:2}" \
+    "0x${bg:0:2}" "0x${bg:2:2}" "0x${bg:4:2}" \
+    "$text"
+}
+
+c1=ffffff
+c2=000000
+c3=111111
+c4=333333
+
+PS1=$(
+  color_echo $c2 $c1 "󰣇"
+  color_echo $c3 $c1 "$(pwd)"
+  color_echo $c4 $c1 "$(git status)"
+)
