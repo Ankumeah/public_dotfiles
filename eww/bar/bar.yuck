@@ -1,3 +1,5 @@
+(defvar bar_image_switch 1)
+
 (defpoll bar_time
   :interval "1s"
   "date '+%I:%M %p'"
@@ -116,6 +118,10 @@
       :text "${EWW_BATTERY.BAT0.capacity}% "
     )
     (systray)
+    (image
+      :path {bar_image_switch == 1 ? "${EWW_CONFIG_DIR}/bar/assets/bongo_cat_left_down.png" : "${EWW_CONFIG_DIR}/bar/assets/bongo_cat_right_down.png"}
+      :image-height 30
+    )
   )
 )
 
@@ -140,7 +146,6 @@
         background: #d20f39;
       }" : ""
     }
-
 
     (label
       :text text
