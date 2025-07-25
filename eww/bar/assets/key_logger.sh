@@ -2,7 +2,7 @@
 
 tmpFile=$(mktemp /tmp/eww_image_switch.XXXXX)
 
-sudo libinput debug-events | grep --line-buffered pressed >"$tmpFile" &
+libinput debug-events | grep --line-buffered pressed >"$tmpFile" &
 
 flag=1
 
