@@ -21,10 +21,18 @@ ex() {
   fi
 }
 
+catr() {
+  find . -type f -print | while read -r file; do
+    echo "\n===== $file =====\n"
+    cat "$file"
+  done
+}
+
 alias kitty_bar='kitty +kitten panel --edge=background -o font_size=16 -o background_opacity=0.4 $1'
 alias cmatrix='cmatrix -C cyan'
 alias python='python3'
 alias ls='ls --color=auto'
 alias bop="play -n synth 0.1 sin 880"
 alias chwal="~/.config/change_wallpaper/change_wallpaper.sh"
-alias anime="fastanime --preview --fzf anilist"
+alias mload="yt-dlp -x --audio-format mp3"
+alias lvim="XDG_CONFIG_HOME=~/.config/lazyvim/ nvim"

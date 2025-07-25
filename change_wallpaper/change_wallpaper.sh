@@ -1,15 +1,35 @@
 #!/bin/bash
 
-# change wallpaper with swww and make color scheme with pywal (installed with pipx)
+# change wallpaper with swww
 swww img $1 --transition-type wipe --transition-angle 30 --transition-fps 24 --transition-duration 2
-notify-send "Wallpaper" "$1"
-~/.local/bin/wal -i $1
+
+# make color scheme with pywal
+wal -i $1
+
+# sync nvim if running
+for sock in "$XDG_RUNTIME_DIR"/nvim.*.0; do
+  if [[ -S "$sock" ]]; then
+    nvim --server "$sock" --remote-send ':lua require("pywal").setup()<CR>'
+    nvim --server "$sock" --remote-send ':lua require("lualine").setup()<CR>'
+  fi
+done
 
 # change border colors on hyprland
 color2=$(jq -r '.colors.color2' ~/.cache/wal/colors.json)
 color2_nopound="${color2:1}"
-echo "\$wall_color = rgba(${color2_nopound}ee)" >~/.config/hypr/hyprland/colors.conf
+echo "\$wall_color = rgba(${color2_nopound}ee)" > ~/.config/hypr/hyprland/colors.conf
 hyprctl reload
 
-# copy colors scheme to eww (eww appends ./ to the front of its imports so use of absalute paths is not supported)
-cat ~/.cache/wal/colors.scss >~/.config/eww/colors.scss
+echo "\$wallpaper = $1
+\$accent = rgba(${color2_nopound}ee)
+" >~/.config/hypr/hyprlock_wallpapaer.conf
+
+# copy color scheme to eww (eww appends ./ to the front of its imports)
+cat ~/.cache/wal/colors.scss > ~/.config/eww/colors.scss
+
+# copy color scheme to mako
+cat ~/.cache/wal/colors-mako > ~/.config/mako/config
+makoctl reload
+
+# notify completion on wallpaper change
+notify-send -a "Wallpaper" -i "$1" "$1"

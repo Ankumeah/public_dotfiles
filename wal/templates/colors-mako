@@ -1,0 +1,5 @@
+background-color={background}
+text-color={foreground}
+border-color={color1}
+border-radius=6
+width=320
