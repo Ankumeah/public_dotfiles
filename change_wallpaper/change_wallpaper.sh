@@ -9,8 +9,8 @@ wal -i $1
 # sync nvim if running
 for sock in "$XDG_RUNTIME_DIR"/nvim.*.0; do
   if [[ -S "$sock" ]]; then
-    nvim --server "$sock" --remote-send ':lua require("pywal").setup()<CR>'
-    nvim --server "$sock" --remote-send ':lua require("lualine").setup()<CR>'
+    nvim --server "$sock" --remote-send ':lua require("pywal").setup()<CR>'
+    nvim --server "$sock" --remote-send ':lua require("lualine").setup()<CR>'
   fi
 done
 
@@ -24,12 +24,13 @@ echo "\$wallpaper = $1
 \$accent = rgba(${color2_nopound}ee)
 " >~/.config/hypr/hyprlock_wallpapaer.conf
 
-# copy color scheme to eww (eww appends ./ to the front of its imports)
+# copy color scheme to eww and reload (eww appends ./ to the front of its imports)
 cat ~/.cache/wal/colors.scss > ~/.config/eww/colors.scss
+eww reload --config ~/.config/eww/bar/
 
 # copy color scheme to mako
 cat ~/.cache/wal/colors-mako > ~/.config/mako/config
 makoctl reload
 
-# notify completion on wallpaper change
-notify-send -a "Wallpaper" -i "$1" "$1"
+# reload pywalfox
+pywalfox update

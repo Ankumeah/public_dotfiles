@@ -8,6 +8,7 @@ if [[ -s "$tmpfile" ]]; then
   pick=$(<"$tmpfile")
   case "${pick,,}" in
   *.png | *.jpg | *.jpeg)
+    notify-send -a "Wallpaper" -i $pick $pick
     $(dirname "$0")/change_wallpaper.sh $pick
     ;;
   *)

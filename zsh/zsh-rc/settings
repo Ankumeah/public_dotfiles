@@ -1,0 +1,25 @@
+# vim: filetype=sh
+
+autoload -Uz compinit && compinit
+setopt histignoredups
+setopt share_history
+
+HISTFILE=~/.his_zsh
+HISTSIZE=10000
+SAVEHIST=10000
+
+bindkey -e
+
+setopt append_history
+setopt HIST_IGNORE_SPACE
+setopt NULL_GLOB
+
+bindkey '\e[1~' beginning-of-line
+bindkey '\e[4~' end-of-line
+bindkey '\e[H' beginning-of-line
+bindkey '\e[F' end-of-line
+
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+ZSH_AUTOSUGGEST_STRATEGY=(completion)

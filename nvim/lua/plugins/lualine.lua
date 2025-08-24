@@ -6,7 +6,7 @@ return {
       options = {
         theme = "auto",
         disabled_filetypes = {
-          statusline = { "neo-tree" }, -- disables lualine in Neo-tree window
+          statusline = { "neo-tree" },
           winbar = {}
         }
       }

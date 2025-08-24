@@ -1,0 +1,12 @@
+(defwidget side [halign]
+  (box
+    :class "side"
+    :orientation "horizontal"
+    :spacing 3
+    :halign halign
+    :vexpand true
+    :space-evenly false
+
+    (children)
+  )
+)

@@ -1,0 +1,9 @@
+(defwidget widget [text ?style]
+  (box
+    :class "children_box"
+    :vexpand true
+    :style {style ?: ""}
+
+    (label :text text)
+  )
+)

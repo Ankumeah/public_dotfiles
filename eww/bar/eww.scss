@@ -1,0 +1,23 @@
+* {all: unset}
+
+@import '../colors.scss';
+
+.bar {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2px 15px 2px 15px;
+  font-family: "JetBrainsMono Nerd Font Mono";
+}
+
+.side {
+  background: rgba(0, 0, 0, 0);
+  padding: 3px 5px;
+}
+
+.children_box {
+  background: $background;
+  color: $foreground;
+  padding: 6px 8px;
+  border-radius: 6px;
+  min-width: 25px;
+  font-size: 14px;
+}

@@ -1,0 +1,41 @@
+(defvar image_switch 1)
+
+(defpoll time
+  :interval "1s"
+  "date '+%I:%M %p'"
+)
+
+(defpoll date
+  :interval "10s"
+  "date '+%d %b, %Y'"
+)
+
+(defpoll workspace
+  :interval "0.1s"
+  "hyprctl monitors -j | jq '.[] | select(.focused).activeWorkspace.id'"
+)
+
+(defpoll audio_level
+  :interval "0.1s"
+  "pamixer --get-volume"
+)
+
+(defpoll muted
+  :interval "0.1s"
+  "pamixer --get-mute | grep -q true && echo 󰝟 || echo "
+)
+
+(defpoll wifi_name
+  :interval "1s"
+  "iwgetid -r || echo 'None'"
+)
+
+(defpoll bluetooth_name
+  :interval "1s"
+  "bluetoothctl info | awk -F': ' '/Name:/ {name=$2} /Connected: yes/ {found=1} END {if (found) print name; else print 'None'}'"
+)
+
+(defpoll bluetooth_battery
+  :interval "1s"
+  "bluetoothctl info | awk -F': ' '/Connected: yes/ {c=1} c && /Battery Percentage:/ {gsub(/^0x/, \"\", $2); print strtonum(\"0x\" $2); exit}'"
+)

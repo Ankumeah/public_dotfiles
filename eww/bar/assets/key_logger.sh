@@ -7,8 +7,9 @@ libinput debug-events | grep --line-buffered pressed >"$tmpFile" &
 flag=1
 
 while inotifywait -qqe modify "$tmpFile"; do
-  eww update bar_image_switch=$flag
-  flag=$((1 - flag))
+  flag=$((3-$flag))
+
+  eww update --config ~/.config/eww/bar/ image_switch=$flag
 
   : >"$tmpFile"
 done

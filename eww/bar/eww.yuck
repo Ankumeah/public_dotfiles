@@ -1,0 +1,62 @@
+(include "./vars.yuck")
+(include "./side.yuck")
+(include "./widget.yuck")
+
+(defwindow bar
+  :class "bar"
+  :monitor 0
+  :geometry (geometry
+    :width "100%"
+    :height "36px"
+    :anchor "top center"
+  )
+  :exclusive "true"
+
+  (box
+    (left_side)
+    (middle)
+    (right_side)
+  )
+)
+
+(defwidget left_side []
+  (side
+    :halign "start"
+
+    (widget :text "${round (EWW_CPU.avg, 0)}% ")
+    (widget :text "${round (EWW_RAM.used_mem_perc, 0)}% ")
+  )
+)
+
+(defwidget middle []
+  (side
+    :halign "center"
+
+    (widget :text workspace)
+    (widget :text "${time} - ${date}")
+    (widget :text "${EWW_TEMPS.CORETEMP_PACKAGE_ID_0}°C ")
+  )
+)
+
+(defwidget right_side []
+  (side
+    :halign "end"
+
+    (widget :text "${bluetooth_name ?: "None"} | ${bluetooth_battery ?: "0"}% ")
+    (widget :text "${audio_level}% ${muted}")
+    (widget :text "${wifi_name ?: "None"} 󰤢")
+    (widget :text "${EWW_BATTERY.BAT0.capacity}% "
+      :style {
+        EWW_BATTERY.BAT0.status == "Charging" ? "background: #076804" :
+        EWW_BATTERY.BAT0.capacity <= 40 && EWW_BATTERY.BAT0.status != "Charging" ? "background: #d20f39" : ""
+      }
+    )
+    (systray)
+    (image :path {
+      image_switch == 1 ? "./assets/bongo_cat_right_up.png" :
+      image_switch == 2 ? "./assets/bongo_cat_left_up.png" :
+      "./assets/bongo_cat_both_up.png"
+      } 
+      :image-height 30)
+  )
+)
