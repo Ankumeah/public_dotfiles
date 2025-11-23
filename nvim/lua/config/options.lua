@@ -1,36 +1,33 @@
-vim.opt.number = true
-vim.opt.relativenumber = true
+vim.o.number = true
+vim.o.relativenumber = true
 
-vim.opt.wrap = false
+vim.o.wrap = false
 
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
+vim.o.expandtab = true
 
-require("nvim-treesitter.configs").setup({ indent = { enable = false } })
+vim.o.clipboard = "unnamedplus"
+vim.o.incsearch = true
+vim.o.cmdheight = 1
+vim.o.autoread = true
+
+vim.o.showtabline = 1
+
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "*",
   callback = function()
-    vim.opt_local.tabstop = 2
-    vim.opt_local.shiftwidth = 2
-    vim.opt_local.softtabstop = 2
-    vim.opt_local.expandtab = true
+    vim.bo.tabstop = 2
+    vim.bo.softtabstop = 2
+    vim.bo.shiftwidth = 2
+    vim.bo.expandtab = true
   end,
 })
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-  pattern = "*",
-  callback = function()
-    vim.opt_local.tabstop = 2
-    vim.opt_local.shiftwidth = 2
-    vim.opt_local.softtabstop = 2
-    vim.opt_local.expandtab = true
-  end,
-})
-
-vim.opt.clipboard = "unnamedplus"
-vim.opt.incsearch = true
-vim.opt.cmdheight = 1
-vim.opt.autoread = true
-
-vim.opt.showtabline = 1

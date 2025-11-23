@@ -12,7 +12,7 @@ return {
     })
 
     for i = 1, 9 do
-      vim.keymap.set( 'n', string.format('<leader><C-%d>', i), function()
+      vim.keymap.set( 'n', string.format('<leader>%d', i), function()
         vim.cmd('BufferLineGoToBuffer ' .. i)
       end, { desc = 'Go to buffer ' .. i })
     end

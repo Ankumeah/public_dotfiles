@@ -39,3 +39,8 @@
   :interval "1s"
   "bluetoothctl info | awk -F': ' '/Connected: yes/ {c=1} c && /Battery Percentage:/ {gsub(/^0x/, \"\", $2); print strtonum(\"0x\" $2); exit}'"
 )
+
+(defpoll network
+  :interval "1s"
+  "./scripts/network.sh"
+)

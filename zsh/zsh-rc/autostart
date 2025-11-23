@@ -1,4 +1,5 @@
 # vim: filetype=sh
 
 fastfetch
+~/.config/zsh/random_quote.py
 eval "$(starship init zsh)"

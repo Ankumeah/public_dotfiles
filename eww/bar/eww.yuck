@@ -25,6 +25,7 @@
 
     (widget :text "${round (EWW_CPU.avg, 0)}% ")
     (widget :text "${round (EWW_RAM.used_mem_perc, 0)}% ")
+    (widget :text "${network}")
   )
 )
 

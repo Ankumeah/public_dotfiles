@@ -1,27 +1,5 @@
 # vim: filetype=sh
 
-ex() {
-  if [ -f $1 ]; then
-    case $1 in
-    *.tar.bz2) tar xjf $1 ;;
-    *.tar.gz) tar xzf $1 ;;
-    *.bz2) bunzip2 $1 ;;
-    *.rar) unrar x $1 ;;
-    *.gz) gunzip $1 ;;
-    *.tar) tar xf $1 ;;
-    *.tbz2) tar xjf $1 ;;
-    *.tgz) tar xzf $1 ;;
-    *.zip) unzip $1 ;;
-    *.Z) uncompress $1 ;;
-    *.7z) 7z x $1 ;;
-    *.tar.xz) tar x $1 ;;
-    *.tar.zst) unzstd $1 ;;
-    *) echo "'$1' is not in the list" ;;
-    esac
-  fi
-}
-
-
 catr() {
   local did_cd=0
   local is_dir=1
@@ -35,7 +13,7 @@ catr() {
   fi
 
   if [[ "$is_dir" = 1 ]]; then
-    find . -type f -print | while read -r file; do
+    find . -type f ! -path "*/.*" -print | while read -r file; do
       echo -e "\n===== $file =====\n"
       cat "$file"
     done
@@ -46,6 +24,14 @@ catr() {
   fi
 }
 
+catf() {
+  for file in "$@"; do
+    if [ "$file" = "catf" ]; then continue; fi
+
+    echo -e "\n= $file =>\n"
+    cat "$file"
+  done
+}
 
 alias kitty_bar='kitty +kitten panel --edge=background -o font_size=16 -o background_opacity=0.4 $1'
 alias cmatrix='cmatrix -C cyan'
@@ -54,5 +40,3 @@ alias ls='ls --color=auto'
 alias bop="play -n synth 0.1 sin 880"
 alias chwal="~/.config/change_wallpaper/change_wallpaper.sh"
 alias mload="yt-dlp -x --audio-format mp3 --write-thumbnail"
-alias mv="~/.config/advcpmv/advmv"
-alias cp="~/.config/advcpmv/advcp"
