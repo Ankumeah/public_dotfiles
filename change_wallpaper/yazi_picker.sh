@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/bash
 
 tmpfile=$(mktemp /tmp/yazi-pick.XXXXXX)
 

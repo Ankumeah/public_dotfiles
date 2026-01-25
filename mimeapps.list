@@ -1,0 +1,30 @@
+[Added Associations]
+application/x-extension-htm=zen.desktop;
+application/x-extension-html=zen.desktop;
+application/x-extension-shtml=zen.desktop;
+application/x-extension-xht=zen.desktop;
+application/x-extension-xhtml=zen.desktop;
+application/xhtml+xml=zen.desktop;
+image/jpeg=imv-4.desktop;imv-3.desktop;imv-2.desktop;
+text/html=zen.desktop;
+text/markdown=nvim-3.desktop;nvim-2.desktop;
+video/mp4=vlc-2.desktop;
+x-scheme-handler/chrome=zen.desktop;
+x-scheme-handler/http=zen.desktop;
+x-scheme-handler/https=zen.desktop;
+
+[Default Applications]
+application/x-extension-htm=zen.desktop
+application/x-extension-html=zen.desktop
+application/x-extension-shtml=zen.desktop
+application/x-extension-xht=zen.desktop
+application/x-extension-xhtml=zen.desktop
+application/xhtml+xml=zen.desktop
+image/jpeg=imv-4.desktop;
+text/html=zen.desktop
+text/markdown=nvim-3.desktop;
+video/mp4=vlc-2.desktop;
+x-scheme-handler/chrome=zen.desktop
+x-scheme-handler/discord-831593107883032657=discord-831593107883032657.desktop
+x-scheme-handler/http=zen.desktop
+x-scheme-handler/https=zen.desktop

@@ -1,4 +1,1 @@
-return {
-    "elkowar/yuck.vim",
-    ft = "yuck",
-}
+return { "elkowar/yuck.vim", ft = "yuck" }

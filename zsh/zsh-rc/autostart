@@ -1,5 +1,8 @@
 # vim: filetype=sh
 
+if [ -n "${SSH_TTY}" ]; then
+  wal -R > /dev/null
+fi
+
 fastfetch
 ~/.config/zsh/random_quote.py
-eval "$(starship init zsh)"

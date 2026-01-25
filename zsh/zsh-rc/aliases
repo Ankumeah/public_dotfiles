@@ -1,27 +1,31 @@
 # vim: filetype=sh
 
 catr() {
-  local did_cd=0
-  local is_dir=1
-
-  if [[ -d "$1" ]]; then
-    cd "$1" || return
-    did_cd=1
-  elif [[ -n "$1" ]]; then
-    echo "$1 is not a directory"
-    is_dir=0
+  if [[ -d "${1}" ]]; then
+    cd "${1}" || return
+  elif [[ -n "${1}" ]]; then
+    echo "${1} is not a directory"
+    exit 1
   fi
 
-  if [[ "$is_dir" = 1 ]]; then
-    find . -type f ! -path "*/.*" -print | while read -r file; do
-      echo -e "\n===== $file =====\n"
-      cat "$file"
-    done
-  fi
+  for file in $(find . -not -path "*/.*"); do
+    is_text=$(file --mime-type -b ${file} | grep text)
 
-  if [[ "$did_cd" = 1 ]]; then
-    cd - > /dev/null || return
-  fi
+    if [ "${file}" != "." ]; then
+      echo -e "===== ${file} ====="
+      if [ -n "${is_text}" ]; then
+        if [ "${2}" = "--bat" ]; then
+          bat --paging=never "${file}"
+        else
+          cat "${file}"
+        fi
+      fi
+      if [ "${2}" != "--bat" ]; then echo ""; fi
+
+    fi
+  done
+
+  cd - > /dev/null || return
 }
 
 catf() {
@@ -34,9 +38,8 @@ catf() {
 }
 
 alias kitty_bar='kitty +kitten panel --edge=background -o font_size=16 -o background_opacity=0.4 $1'
-alias cmatrix='cmatrix -C cyan'
-alias python='python3'
 alias ls='ls --color=auto'
-alias bop="play -n synth 0.1 sin 880"
 alias chwal="~/.config/change_wallpaper/change_wallpaper.sh"
 alias mload="yt-dlp -x --audio-format mp3 --write-thumbnail"
+alias bat="bat --paging=never"
+alias rec='wf-recorder -a=alsa_output.pci-0000_00_1f.3.analog-stereo.monitor -f "${HOME}"/Videos/Screen_recordings/recording_$(date +"%d-%m-%Y_%H-%M-%S-%3N").mkv'

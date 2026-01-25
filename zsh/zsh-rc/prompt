@@ -1,23 +1,18 @@
 # vim: filetype=sh
-# this is an experimatl file, do not source as it will messup your prompt for the session
 
-color_echo() {
-  local fg="${1#"#"}"
-  local bg="${2#"#"}"
-  local text="$3"
-  printf '\e[38;2;%d;%d;%dm\e[48;2;%d;%d;%dm%s\e[0m\n' \
-    "0x${fg:0:2}" "0x${fg:2:2}" "0x${fg:4:2}" \
-    "0x${bg:0:2}" "0x${bg:2:2}" "0x${bg:4:2}" \
-    "$text"
+# eval "$(starship init zsh)"
+
+setopt prompt_subst
+
+git_root_name() {
+  local root
+  root=$(git rev-parse --show-toplevel 2>/dev/null) || return
+  echo " ${root:t} "
 }
 
-c1=ffffff
-c2=000000
-c3=111111
-c4=333333
+PROMPT='
+%F{$color0}%K{$color1} %? %K{$color2} %n %K{$color3}$(git_root_name)%k
+%F{$color2}❯ %f'
 
-PS1=$(
-  color_echo $c2 $c1 "󰣇"
-  color_echo $c3 $c1 "$(pwd)"
-  color_echo $c4 $c1 "$(git status)"
-)
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+export PROMPT=${PROMPT}

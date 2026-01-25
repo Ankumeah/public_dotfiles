@@ -1,5 +1,11 @@
+[[ $- != *i* ]] && return
+
+source $HOME/.cache/wal/colors.sh
+
 source $HOME/.config/zsh/zsh-rc/autostart
 source $HOME/.config/zsh/zsh-rc/env_vars
 source $HOME/.config/zsh/zsh-rc/aliases
 source $HOME/.config/zsh/zsh-rc/plugins
 source $HOME/.config/zsh/zsh-rc/settings
+
+source $HOME/.config/zsh/zsh-rc/prompt

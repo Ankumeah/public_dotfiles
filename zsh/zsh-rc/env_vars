@@ -1,6 +1,11 @@
 # vim: filetype=sh
 
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
-export PATH="$HOME/.local/bin:$PATH"
-. "$HOME/.cargo/env"
+. "${HOME}"/.cargo/env
+
+[ -s "/home/anku/.bun/_bun" ] && source "/home/anku/.bun/_bun"
+export BUN_INSTALL="${HOME}/.bun"
+export PATH="${BUN_INSTALL}/bin:${PATH}"
+
+export PATH="${HOME}/.local/bin:${PATH}"
+
+export PATH="${HOME}/go/bin:${PATH}"
