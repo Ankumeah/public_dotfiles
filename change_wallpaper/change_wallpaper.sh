@@ -10,15 +10,6 @@ for sock in "$XDG_RUNTIME_DIR"/nvim.*.0; do
   fi
 done
 
-color2=$(jq -r '.colors.color2' ~/.cache/wal/colors.json)
-color2_nopound="${color2:1}"
-echo "\$wall_color = rgba(${color2_nopound}ee)" > ~/.config/hypr/hyprland/colors.conf
-hyprctl reload &
-
-echo "\$wallpaper = $1
-\$accent = rgba(${color2_nopound}ee)
-" >~/.config/hypr/hyprlock_wallpapaer.conf
-
 cat ~/.cache/wal/colors.scss > ~/.config/eww/colors.scss
 eww reload --config ~/.config/eww/bar/ &
 

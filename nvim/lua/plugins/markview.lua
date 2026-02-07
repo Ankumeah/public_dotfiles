@@ -4,5 +4,4 @@ return {
   config = function()
     vim.keymap.set("n", "<leader>md", ":Markview<CR>")
   end
-
 }

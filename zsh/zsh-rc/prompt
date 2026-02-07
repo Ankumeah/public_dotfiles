@@ -1,17 +1,19 @@
 # vim: filetype=sh
 
-# eval "$(starship init zsh)"
-
 setopt prompt_subst
 
-git_root_name() {
+git_project() {
   local root
+  local branch
+
   root=$(git rev-parse --show-toplevel 2>/dev/null) || return
-  echo " ${root:t} "
+  branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || return
+
+  echo "  ${root:t} | ${branch} "
 }
 
 PROMPT='
-%F{$color0}%K{$color1} %? %K{$color2} %n %K{$color3}$(git_root_name)%k
+%F{$color0}%K{$color1} %? %K{$color2} %n %K{$color3}$(git_project)%k
 %F{$color2}❯ %f'
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1

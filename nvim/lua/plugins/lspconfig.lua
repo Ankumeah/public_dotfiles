@@ -12,13 +12,16 @@ return {
       "rust_analyzer",
       "html",
       "cssls",
-      "gopls"
+      "gopls",
+      "just"
     }
 
     local schemas = vim.fn.stdpath("config") .. "/lua/schemas/"
     local yamlls_schemas = {
       [schemas .. "docker-compose.json"] = { "*docker-compose*.yaml", "*docker-compose*.yml" },
-      [schemas .. "github-workflow.json"] = { "./.github/workflows/*.yaml", "./.github/workflows/*.yml" }
+      [schemas .. "github-workflow.json"] = { "./.github/workflows/*.yaml", "./.github/workflows/*.yml" },
+      [schemas .. "k8s-deployment-apps-v1.json"] = { "*deployment.yaml", "*deployment.yml" },
+      [schemas .. "k8s-service-v1.json"] = { "*service.yaml", "*service.yml" }
     }
 
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -35,5 +38,7 @@ return {
       vim.lsp.config(lsp, opts)
       vim.lsp.enable(lsp)
     end
+
+    vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
   end
 }
